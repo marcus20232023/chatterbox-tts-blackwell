@@ -2,22 +2,24 @@
   <img src="https://lm17s1uz51.ufs.sh/f/EsgO8cDHBTOU5bjcd6giJaPhnlpTZysr24u6k9WGqwIjNgQo" alt="Chatterbox API TTS header">
 </p>
 
-# Chatterbox TTS API
+# Chatterbox TTS API - Blackwell Edition
 
 <p align="center">
-	<a href="https://github.com/travisvn/chatterbox-tts-api">
-		<img src="https://img.shields.io/github/stars/travisvn/chatterbox-tts-api?style=social" alt="GitHub stars"></a>
-	<a href="https://github.com/travisvn/chatterbox-tts-api">
-		<img alt="GitHub forks" src="https://img.shields.io/github/forks/travisvn/chatterbox-tts-api"></a>
-	<a href="https://github.com/travisvn/chatterbox-tts-api/issues">
-	  <img src="https://img.shields.io/github/issues/travisvn/chatterbox-tts-api" alt="GitHub issues"></a>
-	<img src="https://img.shields.io/github/last-commit/travisvn/chatterbox-tts-api?color=red" alt="GitHub last commit">
+	<a href="https://github.com/marcus20232023/chatterbox-tts-blackwell">
+		<img src="https://img.shields.io/github/stars/marcus20232023/chatterbox-tts-blackwell?style=social" alt="GitHub stars"></a>
+	<a href="https://github.com/marcus20232023/chatterbox-tts-blackwell">
+		<img alt="GitHub forks" src="https://img.shields.io/github/forks/marcus20232023/chatterbox-tts-blackwell"></a>
+	<a href="https://github.com/marcus20232023/chatterbox-tts-blackwell/issues">
+	  <img src="https://img.shields.io/github/issues/marcus20232023/chatterbox-tts-blackwell" alt="GitHub issues"></a>
+	<img src="https://img.shields.io/github/last-commit/marcus20232023/chatterbox-tts-blackwell?color=red" alt="GitHub last commit">
   <a href="http://chatterboxtts.com/discord">
     <img src="https://img.shields.io/badge/Discord-Voice_AI_%26_TTS_Tools-blue?logo=discord&logoColor=white" alt="Discord">
   </a>
 </p>
 
-**FastAPI**-powered REST API for [Chatterbox TTS](https://github.com/resemble-ai/chatterbox), providing OpenAI-compatible text-to-speech endpoints with voice cloning capabilities and additional features on top of the `chatterbox-tts` base package.
+**FastAPI**-powered REST API for [Chatterbox TTS](https://github.com/resemble-ai/chatterbox), optimized for **NVIDIA Blackwell GPUs** (RTX 5080/5090).
+
+> **Inspired by:** [travisvn/chatterbox-tts-api](https://github.com/travisvn/chatterbox-tts-api) | **Core Model:** [ResembleAI/chatterbox](https://github.com/resemble-ai/chatterbox)
 
 ## Features
 
@@ -36,9 +38,30 @@
 🔧 **Type Safety** - Full Pydantic validation for requests and responses  
 🧠 **Memory Management** - Advanced memory monitoring and automatic cleanup
 
-> [!NOTE]
-> _Support for Chatterbox Turbo coming soon_
+## 🤔 Chatterbox Turbo vs Multilingual
 
+**Current Model:** `chatterbox-multilingual` (22 languages)  
+**Planned:** `ResembleAI/chatterbox-turbo` (English only, faster)
+
+| Feature | Multilingual (Current) | Turbo (Planned) |
+|---------|----------------------|-----------------|
+| **Languages** | 22 (en, es, fr, de, it, pt, ja, ko, zh, etc.) | English only |
+| **Speed** | ~0.4x real-time | ~0.1x real-time (4x faster) |
+| **Voice Cloning** | ✅ Yes | ✅ Yes (enhanced) |
+| **Quality** | High | Very High |
+| **GPU Memory** | ~8GB | ~12GB |
+| **Best For** | Multilingual apps, global users | English content, speed-critical apps |
+
+**Why Multilingual Now?**
+- Your deployment needs 22 language support
+- Voice cloning works across languages
+- Battle-tested on RTX 5080 for 5+ weeks
+
+**Turbo Support Coming Soon**
+- See [ATTRIBUTION.md](ATTRIBUTION.md) for roadmap
+- Will be available as optional backend via `TTS_MODEL=turbo` env var
+
+---
 
 > [!IMPORTANT]
 > `resemble-ai/chatterbox` is currently broken for non-CUDA setups (see [chatterbox issues](https://github.com/resemble-ai/chatterbox/issues))
@@ -49,9 +72,22 @@
 
 ## ⚡️ Quick Start
 
+### 🚀 Blackwell GPU Deployment (Recommended)
+
 ```bash
-git clone https://github.com/travisvn/chatterbox-tts-api
-cd chatterbox-tts-api
+git clone https://github.com/marcus20232023/chatterbox-tts-blackwell.git
+cd chatterbox-tts-blackwell
+cp .env.example.docker .env
+docker compose -f docker/docker-compose.blackwell.yml --profile frontend up -d
+```
+
+See [BLACKWELL_DEPLOYMENT.md](BLACKWELL_DEPLOYMENT.md) for detailed RTX 5080/5090 setup.
+
+### 💻 Local Development
+
+```bash
+git clone https://github.com/marcus20232023/chatterbox-tts-blackwell.git
+cd chatterbox-tts-blackwell
 uv sync
 uv run main.py
 ```
@@ -65,8 +101,8 @@ uv run main.py
 
 ```bash
 # Clone the repository
-git clone https://github.com/travisvn/chatterbox-tts-api
-cd chatterbox-tts-api
+git clone https://github.com/marcus20232023/chatterbox-tts-blackwell.git
+cd chatterbox-tts-blackwell
 
 # Install uv if you haven't already
 curl -LsSf https://astral.sh/uv/install.sh | sh
@@ -89,8 +125,8 @@ uv run main.py
 
 ```bash
 # Clone the repository
-git clone https://github.com/travisvn/chatterbox-tts-api
-cd chatterbox-tts-api
+git clone https://github.com/marcus20232023/chatterbox-tts-blackwell.git
+cd chatterbox-tts-blackwell
 
 # Setup environment — using Python 3.11
 python -m venv .venv
@@ -111,14 +147,14 @@ uvicorn app.main:app --host 0.0.0.0 --port 4123
 python main.py
 ```
 
-> Ran into issues? Check the [troubleshooting section](https://github.com/travisvn/chatterbox-tts-api?tab=readme-ov-file#common-issues)
+> Ran into issues? Check the [troubleshooting section](https://github.com/marcus20232023/chatterbox-tts-blackwell?tab=readme-ov-file#common-issues)
 
 ### 🐳 Docker (Recommended)
 
 ```bash
 # Clone and start with Docker Compose
-git clone https://github.com/travisvn/chatterbox-tts-api
-cd chatterbox-tts-api
+git clone https://github.com/marcus20232023/chatterbox-tts-blackwell.git
+cd chatterbox-tts-blackwell
 
 # Use Docker-optimized environment variables
 cp .env.example.docker .env  # Docker-specific paths, ready to use
