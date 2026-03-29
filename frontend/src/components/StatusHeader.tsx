@@ -134,10 +134,10 @@ export default function StatusHeader({
   return (
     <div className="text-center relative">
       <h1 className="text-4xl font-bold text-foreground mb-2">
-        🎤 Chatterbox TTS
+        🎤 Chatterbox TTS <span className="text-2xl font-normal text-muted-foreground">Blackwell Edition</span>
       </h1>
       <p className="text-muted-foreground mb-3">
-        Convert text to speech with voice cloning
+        Convert text to speech with voice cloning • Optimized for RTX 5080/5090
       </p>
 
       {/* Enhanced Status Display */}

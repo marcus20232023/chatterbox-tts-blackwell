@@ -37,7 +37,7 @@ function App() {
         <div className="container max-w-6xl mx-auto px-4 py-2 flex items-center justify-between">
           <div className="flex items-center gap-6">
             <div className="flex-1 min-w-fit items-center gap-2">
-              <h1 className="text-lg font-semibold min-w-fit">Chatterbox TTS</h1>
+              <h1 className="text-lg font-semibold min-w-fit">Chatterbox TTS <span className="text-sm font-normal text-muted-foreground">Blackwell Edition</span></h1>
             </div>
             <Navigation />
           </div>
@@ -72,7 +72,7 @@ function App() {
             </div>
             <div className="flex items-center gap-4">
               <a
-                href="https://github.com/travisvn/chatterbox-tts-api"
+                href="https://github.com/marcus20232023/chatterbox-tts-blackwell"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors duration-300"
